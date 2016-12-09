@@ -1,0 +1,18 @@
+body {
+  font-family: sans-serif;
+}
+
+.RecipeContainer {
+  margin: 50px;
+  border: solid 3px black;
+  height: 800px;
+}
+
+.RecipeBox {
+  margin: 50px;
+  border: solid 1px blue;
+}
+
+.Recipe {
+  text-align: left;
+}
