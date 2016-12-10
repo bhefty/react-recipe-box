@@ -7,13 +7,13 @@ class Recipe extends Component {
         this.renderPanel = this.renderPanel.bind(this)
     }
     renderPanel() {
-        let renderObj = this.props.item.map((item) => {
+        let renderObj = this.props.recipes.map((item) => {
             return (
-            <Panel key={item.id}
-                eventKey={item.id}
-                header={item.name}>
+            <Panel key={item[0]}
+                eventKey={item[0]}
+                header={item[0]}>
                     <ul>
-                    {item.ingredients.map((ingredient) => {
+                    {item[1].map((ingredient) => {
                         return <li key={ingredient}>{ingredient}</li>
                     })}
                     </ul>
