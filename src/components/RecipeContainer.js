@@ -28,6 +28,7 @@ class RecipeContainer extends Component {
     }
     this.handleShowModal = this.handleShowModal.bind(this)
     this.handleSaveRecipe = this.handleSaveRecipe.bind(this)
+    this.deleteRecipe = this.deleteRecipe.bind(this)
   }
   handleShowModal(status) {
     this.setState({isShowingAddRecipe: status})
@@ -37,10 +38,16 @@ class RecipeContainer extends Component {
     newRecipes.push(recipe)
     this.setState({recipes: newRecipes})
   }
+  deleteRecipe(recipe) {
+    this.setState({
+      recipes: this.state.recipes.filter((_, i) => i !== recipe)
+    })
+  }
   render() {
     return (
       <div className="RecipeContainer">
-        <RecipeBox recipes={this.state.recipes}/>
+        <RecipeBox recipes={this.state.recipes}
+          deleteRecipe={this.deleteRecipe}/>
         <AddRecipe show={this.state.isShowingAddRecipe}
           toggleModal={this.handleShowModal}
           saveRecipe={this.handleSaveRecipe}/> 
@@ -50,22 +57,3 @@ class RecipeContainer extends Component {
 }
 
 export default RecipeContainer;
-
-
-// handleAddRecipe() {
-//     console.log('clicked!')
-    
-//     console.log(this.state.recipes)
-
-//     let newArray = this.state.recipes
-//     newArray.push([
-//         'Cake',
-//         [
-//           'Flour',
-//           'Eggs',
-//           'Milk'
-//         ]
-//       ])
-//     this.setState({recipes: newArray})
-//     console.log(this.state.recipes)
-//   }

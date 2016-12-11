@@ -11,9 +11,13 @@ class RecipeForm extends Component {
         e.preventDefault()
         let recipeName = this.refs.name.value
         let recipeIngredients = this.refs.ingredients.value
-        recipeIngredients = recipeIngredients.split(/,\s*/)
-        let submittedRecipe = [recipeName, recipeIngredients]
-        this.props.saveRecipe(submittedRecipe)
+
+        if (recipeName.length > 0 && recipeIngredients.length > 0) {
+            recipeIngredients = recipeIngredients.split(/,\s*/)
+            let submittedRecipe = [recipeName, recipeIngredients]
+            this.props.saveRecipe(submittedRecipe)
+        }
+        
     }
     onClose() {
         this.props.cancelRecipe()

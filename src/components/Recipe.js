@@ -1,10 +1,14 @@
 import React, {Component} from 'react'
-import { Accordion, Panel } from 'react-bootstrap'
+import { Accordion, Button, Panel } from 'react-bootstrap'
 
 class Recipe extends Component {
     constructor() {
         super()
         this.renderPanel = this.renderPanel.bind(this)
+        this.onDelete = this.onDelete.bind(this)
+    }
+    onDelete(recipe) {
+        this.props.deleteRecipe(recipe.item)
     }
     renderPanel() {
         let renderObj = this.props.recipes.map((item) => {
@@ -17,6 +21,8 @@ class Recipe extends Component {
                         return <li key={ingredient}>{ingredient}</li>
                     })}
                     </ul>
+                    <Button bsStyle='danger' onClick={() => {this.onDelete({item})}}>Delete</Button>
+                    <Button bsStyle='info'>Edit</Button>
             </Panel> 
         )
         })

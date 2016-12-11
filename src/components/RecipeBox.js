@@ -8,6 +8,7 @@ class RecipeBox extends Component {
             <div className='RecipeBox'>
                 <Recipe 
                     recipes={this.props.recipes}
+                    deleteRecipe={this.props.deleteRecipe}
                 />
             </div>
         );
