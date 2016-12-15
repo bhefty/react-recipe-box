@@ -8,6 +8,8 @@ class RecipeContainer extends Component {
     super()
     this.state = {
       isShowingAddRecipe: false,
+      nameValue: '',
+      ingredientsValue: '',
       recipes: [
           [
               'Spaghetti',
@@ -29,28 +31,54 @@ class RecipeContainer extends Component {
     this.handleShowModal = this.handleShowModal.bind(this)
     this.handleSaveRecipe = this.handleSaveRecipe.bind(this)
     this.deleteRecipe = this.deleteRecipe.bind(this)
+    this.editRecipe = this.editRecipe.bind(this)
   }
   handleShowModal(status) {
     this.setState({isShowingAddRecipe: status})
   }
   handleSaveRecipe(recipe) {
     let newRecipes = this.state.recipes
-    newRecipes.push(recipe)
+    let editedRecipe = newRecipes.filter((i) => {
+      return i[0] === recipe[0]
+    })
+    if (editedRecipe.length === 0) {
+      newRecipes.push(recipe)
+    } else {
+      newRecipes = newRecipes.map((i) => {
+        if(i === editedRecipe[0]) {
+          i[1] = recipe[1]
+        }
+        return i
+      })
+      console.log(newRecipes)
+    }
     this.setState({recipes: newRecipes})
   }
   deleteRecipe(recipe) {
+    let newRecipes = this.state.recipes
+    newRecipes = newRecipes.filter((i) => i !== recipe)
+    this.setState({recipes: newRecipes})
+  }
+  editRecipe(recipe) {
+    let recipeName = recipe[0]
+    let recipeIngredients = recipe[1]
     this.setState({
-      recipes: this.state.recipes.filter((_, i) => i !== recipe)
+      isShowingAddRecipe: true,
+      nameValue: recipeName,
+      ingredientsValue: recipeIngredients
     })
   }
   render() {
     return (
       <div className="RecipeContainer">
         <RecipeBox recipes={this.state.recipes}
-          deleteRecipe={this.deleteRecipe}/>
+          deleteRecipe={this.deleteRecipe}
+          editRecipe={this.editRecipe}/>
         <AddRecipe show={this.state.isShowingAddRecipe}
           toggleModal={this.handleShowModal}
-          saveRecipe={this.handleSaveRecipe}/> 
+          saveRecipe={this.handleSaveRecipe}
+          defaultName={this.state.nameValue}
+          defaultIngredients={this.state.ingredientsValue}/>
       </div>
     );
   }

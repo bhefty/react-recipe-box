@@ -3,12 +3,16 @@ import { Accordion, Button, Panel } from 'react-bootstrap'
 
 class Recipe extends Component {
     constructor() {
-        super()
-        this.renderPanel = this.renderPanel.bind(this)
-        this.onDelete = this.onDelete.bind(this)
+      super()
+      this.renderPanel = this.renderPanel.bind(this)
+      this.onDelete = this.onDelete.bind(this)
+      this.onEdit = this.onEdit.bind(this)
     }
     onDelete(recipe) {
-        this.props.deleteRecipe(recipe.item)
+      this.props.deleteRecipe(recipe.item)
+    }
+    onEdit(recipe) {
+      this.props.editRecipe(recipe.item)
     }
     renderPanel() {
         let renderObj = this.props.recipes.map((item) => {
@@ -21,19 +25,25 @@ class Recipe extends Component {
                         return <li key={ingredient}>{ingredient}</li>
                     })}
                     </ul>
-                    <Button bsStyle='danger' onClick={() => {this.onDelete({item})}}>Delete</Button>
-                    <Button bsStyle='info'>Edit</Button>
-            </Panel> 
+                    <Button bsStyle='danger'
+                      onClick={() => {this.onDelete({item})}}>
+                      Delete
+                    </Button>
+                    <Button bsStyle='info'
+                      onClick={() => {this.onEdit({item})}}>
+                      Edit
+                    </Button>
+            </Panel>
         )
         })
         return renderObj
-        
+
     }
     render() {
         return (
             <div>
                 <Accordion>
-                    {this.renderPanel()}            
+                    {this.renderPanel()}
                 </Accordion>
             </div>
         );

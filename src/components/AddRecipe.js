@@ -35,8 +35,11 @@ class AddRecipe extends Component {
                     <Modal.Header closeButton>
                         <Modal.Title>Add Recipe</Modal.Title>
                     </Modal.Header>
-                    <RecipeForm cancelRecipe={this.close}
-                        saveRecipe={this.save}/>
+                    <RecipeForm
+                      cancelRecipe={this.close}
+                      saveRecipe={this.save}
+                      name={this.props.defaultName}
+                      ingredients={this.props.defaultIngredients}/>
                 </Modal>
             </div>
         );

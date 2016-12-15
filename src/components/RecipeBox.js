@@ -6,9 +6,10 @@ class RecipeBox extends Component {
     render() {
         return (
             <div className='RecipeBox'>
-                <Recipe 
+                <Recipe
                     recipes={this.props.recipes}
                     deleteRecipe={this.props.deleteRecipe}
+                    editRecipe={this.props.editRecipe}
                 />
             </div>
         );
@@ -16,5 +17,3 @@ class RecipeBox extends Component {
 }
 
 export default RecipeBox;
-
-
