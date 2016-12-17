@@ -19,6 +19,7 @@ class RecipeContainer extends Component {
     this.editRecipe = this.editRecipe.bind(this)
   }
   componentDidMount() {
+    localStorage.setItem('recipes', JSON.stringify(this.state.recipes))
     let storedRecipes = JSON.parse(localStorage.getItem('recipes'))
     let setRecipes
     if (storedRecipes === undefined) {
