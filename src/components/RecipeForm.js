@@ -9,18 +9,12 @@ class RecipeForm extends Component {
     }
     onSubmit(e) {
         e.preventDefault()
-        if (this.props.name !== '') {
-          console.log('EDIT!')
-        } else {
-          console.log('NO EDIT!')
-        }
         let recipeName = this.refs.name.value
         let recipeIngredients = this.refs.ingredients.value
 
         if (recipeName.length > 0 && recipeIngredients.length > 0) {
             recipeIngredients = recipeIngredients.split(/,\s*/)
             let submittedRecipe = [recipeName, recipeIngredients]
-            console.log('Submitted: ', submittedRecipe)
             this.props.saveRecipe(submittedRecipe)
         }
 

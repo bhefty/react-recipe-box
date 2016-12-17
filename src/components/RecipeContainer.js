@@ -6,32 +6,26 @@ import AddRecipe from './AddRecipe'
 class RecipeContainer extends Component {
   constructor() {
     super()
+
     this.state = {
       isShowingAddRecipe: false,
       nameValue: '',
       ingredientsValue: '',
-      recipes: [
-          [
-              'Spaghetti',
-              [
-                  'Noodles',
-                  'Sauce',
-                  'Meatballs'
-              ]
-          ],
-          [
-              'Cereal',
-              [
-                  'Dry cereal',
-                  'Milk'
-              ]
-          ]
-      ]
+      recipes: JSON.parse(localStorage.getItem('recipes')) || []
     }
     this.handleShowModal = this.handleShowModal.bind(this)
     this.handleSaveRecipe = this.handleSaveRecipe.bind(this)
     this.deleteRecipe = this.deleteRecipe.bind(this)
     this.editRecipe = this.editRecipe.bind(this)
+  }
+  componentDidMount() {
+    let setRecipes = JSON.parse(localStorage.getItem('recipes'))
+    this.setState({
+      recipes: setRecipes
+    })
+  }
+  componentDidUpdate(){
+    localStorage.setItem('recipes', JSON.stringify(this.state.recipes))
   }
   handleShowModal(status) {
     this.setState({isShowingAddRecipe: status})
@@ -50,7 +44,6 @@ class RecipeContainer extends Component {
         }
         return i
       })
-      console.log(newRecipes)
     }
     this.setState({recipes: newRecipes})
   }
