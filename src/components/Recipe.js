@@ -15,6 +15,13 @@ class Recipe extends Component {
       this.props.editRecipe(recipe.item)
     }
     renderPanel() {
+      if (this.props.recipes.length === 0) {
+        return (
+          <Panel key={'no-recipes'}
+            eventKey={'no-recipes'}
+            header='No Recipes! Add one below!'></Panel>
+        )
+      } else {
         let renderObj = this.props.recipes.map((item) => {
             return (
             <Panel key={item[0]}
@@ -37,7 +44,7 @@ class Recipe extends Component {
         )
         })
         return renderObj
-
+      }
     }
     render() {
         return (
