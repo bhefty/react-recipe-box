@@ -52,7 +52,11 @@ class RecipeContainer extends Component {
         return i
       })
     }
-    this.setState({recipes: newRecipes})
+    this.setState({
+      recipes: newRecipes,
+      nameValue: '',
+      ingredientsValue: ''
+    })
   }
   deleteRecipe(recipe) {
     let newRecipes = this.state.recipes

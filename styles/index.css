@@ -3,5 +3,11 @@ body {
 }
 
 .RecipeContainer {
-  margin: 50px;
+  margin: auto;
+  margin-top: 60px;
+  max-width: 80%;
+}
+
+.recipe-header {
+  text-align: center;
 }

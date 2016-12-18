@@ -26,7 +26,7 @@ class AddRecipe extends Component {
                 <Button
                     bsStyle='success'
                     bsSize='large'
-                    className='pull-left'
+                    block
                     onClick={this.open}>
                     Add Recipe
                 </Button>

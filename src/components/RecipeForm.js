@@ -13,7 +13,11 @@ class RecipeForm extends Component {
         let recipeIngredients = this.refs.ingredients.value
 
         if (recipeName.length > 0 && recipeIngredients.length > 0) {
+            let nameArray = recipeName.toLowerCase().split('')
+            nameArray[0] = nameArray[0].toUpperCase()
+            recipeName = nameArray.join('')
             recipeIngredients = recipeIngredients.split(/,\s*/)
+            recipeIngredients = recipeIngredients.map((i) => i.charAt(0).toUpperCase() + i.slice(1).toLowerCase())
             let submittedRecipe = [recipeName, recipeIngredients]
             this.props.saveRecipe(submittedRecipe)
         }

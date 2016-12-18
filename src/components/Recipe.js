@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Accordion, Button, Panel } from 'react-bootstrap'
+import { Accordion, Button, Panel, ListGroup, ListGroupItem, Well } from 'react-bootstrap'
 
 class Recipe extends Component {
     constructor() {
@@ -19,6 +19,7 @@ class Recipe extends Component {
         return (
           <Panel key={'no-recipes'}
             eventKey={'no-recipes'}
+            bsStyle='primary'
             header='No Recipes! Add one below!'></Panel>
         )
       } else {
@@ -26,21 +27,30 @@ class Recipe extends Component {
             return (
             <Panel key={item[0]}
                 eventKey={item[0]}
-                header={item[0]}>
-                    <ul>
+                header={item[0]}
+                bsStyle='success'>
+                    <h3 className='recipe-header'>Ingredients</h3>
+                    <ListGroup fill>
                     {item[1].map((ingredient) => {
-                        return <li key={ingredient}>{ingredient}</li>
+                        return <ListGroupItem key={ingredient}>{ingredient}</ListGroupItem>
                     })}
-                    </ul>
+                  </ListGroup>
+                  <div className='row'>
                     <Button bsStyle='danger'
+                      bsSize='large'
+                      className='col-xs-6 col-sm-4 col-sm-offset-1 col-md-3 col-md-offset-2'
                       onClick={() => {this.onDelete({item})}}>
                       Delete
                     </Button>
                     <Button bsStyle='info'
+                      bsSize='large'
+                      className='col-xs-6 col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-2'
                       onClick={() => {this.onEdit({item})}}>
                       Edit
                     </Button>
+                  </div>
             </Panel>
+
         )
         })
         return renderObj
@@ -48,11 +58,11 @@ class Recipe extends Component {
     }
     render() {
         return (
-            <div>
+            <Well bsSize='small'>
                 <Accordion>
                     {this.renderPanel()}
                 </Accordion>
-            </div>
+            </Well>
         );
     }
 }
