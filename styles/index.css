@@ -1,13 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Seymour+One');
+
 body {
   font-family: sans-serif;
 }
 
 .RecipeContainer {
   margin: auto;
-  margin-top: 60px;
+  margin-top: 30px;
   max-width: 80%;
 }
 
 .recipe-header {
   text-align: center;
+}
+
+.jumbotron {
+  background-color: #CEDDC7;
+  font-family: 'Seymour One', sans-serif;
+}
+
+.footer {
+  color: #fff;
+  background-color: #222;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.footer p {
+  margin: auto;
+}
+
+.footer a {
+  color: #999;
 }

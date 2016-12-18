@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import RecipeBox from './RecipeBox'
 import AddRecipe from './AddRecipe'
+import Footer from './Footer'
 
 class RecipeContainer extends Component {
   constructor() {
@@ -74,16 +75,21 @@ class RecipeContainer extends Component {
   }
   render() {
     return (
-      <div className="RecipeContainer">
-        <RecipeBox recipes={this.state.recipes}
-          deleteRecipe={this.deleteRecipe}
-          editRecipe={this.editRecipe}/>
-        <AddRecipe show={this.state.isShowingAddRecipe}
-          toggleModal={this.handleShowModal}
-          saveRecipe={this.handleSaveRecipe}
-          defaultName={this.state.nameValue}
-          defaultIngredients={this.state.ingredientsValue}/>
+      <div>
+        <div className="RecipeContainer">
+          <h1 className='jumbotron recipe-header'>Recipe Box</h1>
+          <RecipeBox recipes={this.state.recipes}
+            deleteRecipe={this.deleteRecipe}
+            editRecipe={this.editRecipe}/>
+          <AddRecipe show={this.state.isShowingAddRecipe}
+            toggleModal={this.handleShowModal}
+            saveRecipe={this.handleSaveRecipe}
+            defaultName={this.state.nameValue}
+            defaultIngredients={this.state.ingredientsValue}/>
+        </div>
+        <Footer/>
       </div>
+
     );
   }
 }
